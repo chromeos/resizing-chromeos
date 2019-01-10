@@ -85,10 +85,10 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState?.putBoolean(KEY_EXPANDED, viewModel.isDescriptionExpanded.value == true)
-        outState?.putString(KEY_PRODUCT_NAME, viewModel.productName.value)
+        outState.putBoolean(KEY_EXPANDED, viewModel.isDescriptionExpanded.value == true)
+        outState.putString(KEY_PRODUCT_NAME, viewModel.productName.value)
     }
 
     private fun handleReviewsUpdate(appData: AppData?) {

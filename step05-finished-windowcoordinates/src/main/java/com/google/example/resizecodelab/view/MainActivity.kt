@@ -14,28 +14,32 @@
 */
 package com.google.example.resizecodelab.view
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.res.Configuration
 import android.os.Bundle
-import androidx.constraintlayout.ConstraintsChangedListener
-import androidx.core.widget.TextViewCompat
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
-import com.google.example.resizecodelab.R
-import com.google.example.resizecodelab.model.AppData
-import com.google.example.resizecodelab.model.Suggestion
-import kotlinx.android.synthetic.main.activity_main.*
-import androidx.recyclerview.widget.LinearLayoutManager
-import android.transition.*
+import android.transition.ChangeBounds
+import android.transition.TransitionManager
 import android.view.Gravity
 import android.view.View
-import android.view.View.*
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.animation.AnticipateOvershootInterpolator
 import android.widget.FrameLayout
 import android.widget.PopupWindow
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintsChangedListener
+import androidx.core.content.ContextCompat
+import androidx.core.widget.TextViewCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.example.resizecodelab.R
+import com.google.example.resizecodelab.model.AppData
+import com.google.example.resizecodelab.model.Suggestion
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_shell.*
 
 
@@ -72,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                     R.layout.activity_main -> {
                         val reviewLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(
                             baseContext,
-                            androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
+                            RecyclerView.VERTICAL,
                             false
                         )
                         recyclerReviews.layoutManager = reviewLayoutManager
@@ -86,7 +90,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     R.layout.activity_main_land -> {
-                        val reviewLayoutManager = androidx.recyclerview.widget.GridLayoutManager(baseContext, 2)
+                        val reviewLayoutManager = GridLayoutManager(baseContext, 2)
                         recyclerReviews.layoutManager = reviewLayoutManager
 
                         val suggestionLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(
@@ -100,20 +104,20 @@ class MainActivity : AppCompatActivity() {
                     R.layout.activity_main_w400 -> {
                         val reviewLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(
                             baseContext,
-                            androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
+                            RecyclerView.VERTICAL,
                             false
                         )
                         recyclerReviews.layoutManager = reviewLayoutManager
 
-                        val suggestionLayoutManager = androidx.recyclerview.widget.GridLayoutManager(baseContext, 2)
+                        val suggestionLayoutManager = GridLayoutManager(baseContext, 2)
                         recyclerSuggested.layoutManager = suggestionLayoutManager
                     }
 
                     R.layout.activity_main_w600_land -> {
-                        val reviewLayoutManager = androidx.recyclerview.widget.GridLayoutManager(baseContext, 2)
+                        val reviewLayoutManager = GridLayoutManager(baseContext, 2)
                         recyclerReviews.layoutManager = reviewLayoutManager
 
-                        val suggestionLayoutManager = androidx.recyclerview.widget.GridLayoutManager(baseContext, 3)
+                        val suggestionLayoutManager = GridLayoutManager(baseContext, 3)
                         recyclerSuggested.layoutManager = suggestionLayoutManager
                     }
                 }
@@ -176,7 +180,7 @@ class MainActivity : AppCompatActivity() {
             val layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, Gravity.CENTER)
             val framePopup = FrameLayout(this)
             framePopup.layoutParams = layoutParams
-            framePopup.setBackgroundColor(getColor(R.color.background_floating_material_light))
+            framePopup.setBackgroundColor(ContextCompat.getColor(this, R.color.background_floating_material_light))
 
             framePopup.addView(textPopupMessage)
 
@@ -203,10 +207,10 @@ class MainActivity : AppCompatActivity() {
         configurationUpdate(resources.configuration)
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState?.putBoolean(KEY_EXPANDED, viewModel.isDescriptionExpanded.value == true)
-        outState?.putString(KEY_PRODUCT_NAME, viewModel.productName.value)
+        outState.putBoolean(KEY_EXPANDED, viewModel.isDescriptionExpanded.value == true)
+        outState.putString(KEY_PRODUCT_NAME, viewModel.productName.value)
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
