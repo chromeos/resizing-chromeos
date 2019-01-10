@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main_shell)
 
         //Set up constraint layout animations
-        constraintMain.setLayoutDescription(R.xml.constraint_states)
+        constraintMain.loadLayoutDescription(R.xml.constraint_states)
         constraintMain.setOnConstraintsChanged(object : ConstraintsChangedListener() {
 
             override fun preLayoutChange(state: Int, layoutId: Int) {
@@ -74,16 +74,16 @@ class MainActivity : AppCompatActivity() {
 
                 when (layoutId) {
                     R.layout.activity_main -> {
-                        val reviewLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+                        val reviewLayoutManager = LinearLayoutManager(
                             baseContext,
                             RecyclerView.VERTICAL,
                             false
                         )
                         recyclerReviews.layoutManager = reviewLayoutManager
 
-                        val suggestionLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+                        val suggestionLayoutManager = LinearLayoutManager(
                             baseContext,
-                            androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL,
+                            LinearLayoutManager.HORIZONTAL,
                             false
                         )
                         recyclerSuggested.layoutManager = suggestionLayoutManager
@@ -93,16 +93,16 @@ class MainActivity : AppCompatActivity() {
                         val reviewLayoutManager = GridLayoutManager(baseContext, 2)
                         recyclerReviews.layoutManager = reviewLayoutManager
 
-                        val suggestionLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+                        val suggestionLayoutManager = LinearLayoutManager(
                             baseContext,
-                            androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL,
+                            LinearLayoutManager.HORIZONTAL,
                             false
                         )
                         recyclerSuggested.layoutManager = suggestionLayoutManager
                     }
 
                     R.layout.activity_main_w400 -> {
-                        val reviewLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+                        val reviewLayoutManager = LinearLayoutManager(
                             baseContext,
                             RecyclerView.VERTICAL,
                             false

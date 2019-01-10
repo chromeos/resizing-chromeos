@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main_shell)
 
         //Set up constraint layout animations
-        constraintMain.setLayoutDescription(R.xml.constraint_states)
+        constraintMain.loadLayoutDescription(R.xml.constraint_states)
         constraintMain.setOnConstraintsChanged(object : ConstraintsChangedListener() {
 
             override fun preLayoutChange(state: Int, layoutId: Int) {
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
 
                         val suggestionLayoutManager = LinearLayoutManager(
                             baseContext,
-                            androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL,
+                            LinearLayoutManager.HORIZONTAL,
                             false
                         )
                         recyclerSuggested.layoutManager = suggestionLayoutManager
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
 
                         val suggestionLayoutManager = LinearLayoutManager(
                             baseContext,
-                            androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL,
+                            LinearLayoutManager.HORIZONTAL,
                             false
                         )
                         recyclerSuggested.layoutManager = suggestionLayoutManager
