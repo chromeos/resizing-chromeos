@@ -111,13 +111,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getSuggestedProducts() : Array<Suggestion> {
-        return arrayOf(Suggestion(getString(R.string.label_product_name2), R.drawable.gregarious),
-                Suggestion(getString(R.string.label_product_name3), R.drawable.byzantium),
-                Suggestion(getString(R.string.label_product_name4), R.drawable.cratankerous),
-                Suggestion(getString(R.string.label_product_name5), R.drawable.sunsari),
-                Suggestion(getString(R.string.label_product_name6), R.drawable.squiggle),
-                Suggestion(getString(R.string.label_product_name7), R.drawable.tenacious),
-                Suggestion(getString(R.string.label_product_name8), R.drawable.venemial))
+        return arrayOf(Suggestion("Gregarious Grogglestock", R.drawable.gregarious),
+            Suggestion("Byzantium Barnacles", R.drawable.byzantium),
+            Suggestion("Cratankerous Cribblewelps", R.drawable.cratankerous),
+            Suggestion("Sunsaritous", R.drawable.sunsari),
+            Suggestion("Squiggalia Scrumptiae", R.drawable.squiggle),
+            Suggestion("Tenachaterous Torna", R.drawable.tenacious),
+            Suggestion("Venemial Venorae", R.drawable.venemial))
     }
 
     private fun toggleExpandButton() {
