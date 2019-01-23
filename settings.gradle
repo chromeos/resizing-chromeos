@@ -1,4 +1,5 @@
-include ':step00-start', ':shared'
+include ':shared'
+include ':step00-start'
 include ':step01-viewmodel'
 include ':step02-savedinstance'
 include ':step03-multiplelayouts'
