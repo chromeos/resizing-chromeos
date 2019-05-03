@@ -39,8 +39,8 @@ private const val KEY_EXPANDED = "KEY_EXPANDED"
  * Survives config changes (e.g. rotation), good place to store data that takes time to recover
  */
 class MainViewModel(private val state: SavedStateHandle) : ViewModel() {
-    private val appData = dataProvider.fetchData(getIdState())
-    val suggestions = dataProvider.fetchSuggestions(getIdState())
+    private val appData = DataProvider.fetchData(getIdState())
+    val suggestions = DataProvider.fetchSuggestions(getIdState())
 
     private val isDescriptionExpanded: LiveData<Boolean> = state.getLiveData(KEY_EXPANDED)
 */
