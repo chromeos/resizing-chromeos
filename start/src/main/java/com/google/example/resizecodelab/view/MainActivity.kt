@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity() {
         }
         handleAppDataUpdate(null) // Default state.
         /////////////////////////////////////////////////////
-        // With the view model equivalent
+        // With the ViewModel equivalent
         //
         // expandDescriptionButton.setOnClickListener { viewModel.toggleDescriptionExpanded() }
         //
