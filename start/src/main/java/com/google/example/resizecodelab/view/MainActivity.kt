@@ -101,19 +101,18 @@ class MainActivity : AppCompatActivity() {
         /////////////////////////////////////////////////////
         // STEP 1 - State (ViewModel)
         //
-        // Replace
+        // REMOVE the following lines
         expandDescriptionButton.setOnClickListener {
             toggleExpandButton()
             updateDescription()
         }
         handleAppDataUpdate(null) // Default state.
         /////////////////////////////////////////////////////
-        // With the ViewModel equivalent
+        // and REPLACE with the ViewModel equivalent
         //
         // expandDescriptionButton.setOnClickListener { viewModel.toggleDescriptionExpanded() }
         //
         /////////////////////////////////////////////////////
-
 
         // DELETE NEXT LINE IN STEP 1 - After adding ViewModel
         DataProvider.fetchData(dataId).observe(this, Observer(::handleAppDataUpdate))
