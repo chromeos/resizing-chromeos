@@ -165,7 +165,8 @@ class MainActivity : AppCompatActivity() {
             .inflate(R.layout.dialog_purchase, mainNestedScrollView, false)
 
         //Get window size
-        val displayMetrics = resources.displayMetrics
+        val displayMetrics = Resources.getSystem().displayMetrics // INCORRECT
+        // val displayMetrics = resources.displayMetrics // CORRECT
         val screenWidthPx = displayMetrics.widthPixels
         val screenHeightPx = displayMetrics.heightPixels
 
