@@ -41,8 +41,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var productCompanyTextView: TextView
     private lateinit var productDescriptionTextView: TextView
 
+    // DELETE NEXT 2 LINES IN STEP 1 - After adding ViewModel
     private var isDescriptionExpanded: Boolean = false
     private var appData: AppData? = null
+
+
     private val reviewAdapter = ReviewAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -104,7 +107,9 @@ class MainActivity : AppCompatActivity() {
 
         handleAppDataUpdate(null) // Default state.
 
+        // DELETE NEXT LINE IN STEP 1 - After adding ViewModel
         DataProvider.fetchData(dataId).observe(this, Observer(::handleAppDataUpdate))
+
         DataProvider.fetchSuggestions(dataId)
             .observe(this, NullFilteringObserver(suggestionAdapter::updateSuggestions))
 
