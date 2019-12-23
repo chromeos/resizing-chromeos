@@ -100,7 +100,7 @@ class MainViewModel : ViewModel() {
      * Handle toggle button presses - REPLACE ME in STEP 2
      */
     fun toggleDescriptionExpanded() {
-        isDescriptionExpanded.value = !(isDescriptionExpanded.value ?= false)
+        isDescriptionExpanded.value = !(isDescriptionExpanded.value ?: false)
     }
     */
     /////////////////////////////////////////////////////
