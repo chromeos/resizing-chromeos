@@ -95,17 +95,25 @@ class MainActivity : AppCompatActivity() {
             NullFilteringObserver(productCompanyTextView::setText))
         viewModel.descriptionText.observe(this,
             NullFilteringObserver(productDescriptionTextView::setText))
-
-        expandDescriptionButton.setOnClickListener { viewModel.toggleDescriptionExpanded() }
         */
         /////////////////////////////////////////////////////
 
+        /////////////////////////////////////////////////////
+        // STEP 1 - State (ViewModel)
+        //
+        // Replace
         expandDescriptionButton.setOnClickListener {
             toggleExpandButton()
             updateDescription()
         }
-
         handleAppDataUpdate(null) // Default state.
+        /////////////////////////////////////////////////////
+        // With the view model equivalent
+        //
+        // expandDescriptionButton.setOnClickListener { viewModel.toggleDescriptionExpanded() }
+        //
+        /////////////////////////////////////////////////////
+
 
         // DELETE NEXT LINE IN STEP 1 - After adding ViewModel
         DataProvider.fetchData(dataId).observe(this, Observer(::handleAppDataUpdate))
@@ -178,6 +186,17 @@ class MainActivity : AppCompatActivity() {
     */
     /////////////////////////////////////////////////////
 
+    private fun updateControlVisibility(showControls: Boolean) {
+        loadingProgress.isVisible = !showControls
+        purchaseButton.isVisible = showControls
+        expandDescriptionButton.isVisible = showControls
+    }
+
+
+    /////////////////////////////////////////////////////
+    // STEP 1 - State (ViewModel)
+    //
+    // DELETE following 3 methods after adding ViewModel
     private fun handleAppDataUpdate(appData: AppData?) {
         this.appData = appData
         updateControlVisibility(appData != null)
@@ -188,13 +207,6 @@ class MainActivity : AppCompatActivity() {
             updateDescription()
         }
     }
-
-    private fun updateControlVisibility(showControls: Boolean) {
-        loadingProgress.isVisible = !showControls
-        purchaseButton.isVisible = showControls
-        expandDescriptionButton.isVisible = showControls
-    }
-
     private fun toggleExpandButton() {
         isDescriptionExpanded = !isDescriptionExpanded
         expandDescriptionButton.setText(
@@ -206,4 +218,5 @@ class MainActivity : AppCompatActivity() {
         productDescriptionTextView.text =
             if (isDescriptionExpanded) appData?.description else appData?.shortDescription
     }
+    /////////////////////////////////////////////////////
 }
